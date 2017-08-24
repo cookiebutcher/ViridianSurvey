@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
+import { SurveysComponent } from './components/surveys/surveys.component';
 import { CounterComponent } from './components/counter/counter.component';
 
 import { SurveyService } from './dataservices/survey.service';
@@ -17,7 +17,7 @@ import { SurveyService } from './dataservices/survey.service';
         AppComponent,
         NavMenuComponent,
         CounterComponent,
-        FetchDataComponent,
+        SurveysComponent,
         HomeComponent
     ],
     providers: [
@@ -31,7 +31,7 @@ import { SurveyService } from './dataservices/survey.service';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'surveys', component: SurveysComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

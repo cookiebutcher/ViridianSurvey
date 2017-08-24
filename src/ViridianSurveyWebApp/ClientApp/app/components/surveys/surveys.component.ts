@@ -3,10 +3,10 @@ import { SurveyService } from '../../dataservices/survey.service';
 import { ISurvey } from '../../datamodels/survey.model';
 
 @Component({
-    selector: 'fetchdata',
-    templateUrl: './fetchdata.component.html'
+    selector: 'surveys',
+    templateUrl: './surveys.component.html'
 })
-export class FetchDataComponent {
+export class SurveysComponent {
     public surveys: ISurvey[];
 
     constructor(     
