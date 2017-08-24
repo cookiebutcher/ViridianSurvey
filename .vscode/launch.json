@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/ViridianSurveyWebApp/bin/Debug/netcoreapp2.0/ViridianSurveyWebApp.dll",
+            "program": "${workspaceRoot}/src/ViridianSurveyWebApp/bin/Debug/netcoreapp2.0/ViridianSurveyWebApp.dll",
             "args": [],
-            "cwd": "${workspaceRoot}/ViridianSurveyWebApp",
+            "cwd": "${workspaceRoot}/src/ViridianSurveyWebApp",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

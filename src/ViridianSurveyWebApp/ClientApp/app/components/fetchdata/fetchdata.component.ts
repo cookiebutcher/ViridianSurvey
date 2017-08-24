@@ -1,23 +1,20 @@
-import { Component, Inject } from '@angular/core';
-import { Http } from '@angular/http';
+import { Component } from '@angular/core';
+import { SurveyService } from '../../dataservices/survey.service';
+import { ISurvey } from '../../datamodels/survey.model';
 
 @Component({
     selector: 'fetchdata',
     templateUrl: './fetchdata.component.html'
 })
 export class FetchDataComponent {
-    public forecasts: WeatherForecast[];
+    public surveys: ISurvey[];
 
-    constructor(http: Http, @Inject('ORIGIN_URL') originUrl: string) {
-        http.get(originUrl + '/api/SampleData/WeatherForecasts').subscribe(result => {
-            this.forecasts = result.json() as WeatherForecast[];
+    constructor(     
+        private surveyService: SurveyService) {
+        
+        this.surveyService.getSurveys()
+        .subscribe((surveys: ISurvey[]) => {
+            this.surveys = surveys;
         });
     }
-}
-
-interface WeatherForecast {
-    dateFormatted: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
 }

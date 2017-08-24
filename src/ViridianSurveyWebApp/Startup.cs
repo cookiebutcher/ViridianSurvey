@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ViridianCode.ViridianSurvey.DataModel;
+using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
+using ViridianCode.ViridianSurvey.DataRepository.Implementations;
 
 namespace ViridianSurveyWebApp
 {
@@ -23,7 +26,8 @@ namespace ViridianSurveyWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ViridianSurveyContext>();
+            services.AddDbContext<ViridianSurveyContext>(options => options.UseSqlite("Filename=./viridianSurvey.db"));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc();
         }
 
