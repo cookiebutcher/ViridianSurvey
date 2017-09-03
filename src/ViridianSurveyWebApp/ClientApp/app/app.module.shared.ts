@@ -7,8 +7,10 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { SurveysComponent } from './components/surveys/surveys.component';
 import { CounterComponent } from './components/counter/counter.component';
+
+import { SurveysComponent } from './components/surveys/surveys.component';
+import { CreateSurveyComponent } from './components/surveys/createSurvey.component';
 
 import { SurveyService } from './dataservices/survey.service';
 
@@ -18,6 +20,7 @@ import { SurveyService } from './dataservices/survey.service';
         NavMenuComponent,
         CounterComponent,
         SurveysComponent,
+        CreateSurveyComponent,
         HomeComponent
     ],
     providers: [

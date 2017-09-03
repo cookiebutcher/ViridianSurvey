@@ -9,8 +9,7 @@ import { ISurvey } from '../../datamodels/survey.model';
 export class SurveysComponent {
     public surveys: ISurvey[];
 
-    constructor(     
-        private surveyService: SurveyService) {
+    constructor(private surveyService: SurveyService) {
         
         this.surveyService.getSurveys()
         .subscribe((surveys: ISurvey[]) => {
