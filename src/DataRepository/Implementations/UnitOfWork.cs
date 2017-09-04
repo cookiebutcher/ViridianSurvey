@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using ViridianCode.ViridianSurvey.DataModel;
 using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
 
@@ -21,6 +22,11 @@ namespace ViridianCode.ViridianSurvey.DataRepository.Implementations
         public int Complete()
         {
             return context.SaveChanges();
+        }
+        
+        public async Task<int> CompleteAsync()
+        {
+            return await context.SaveChangesAsync();
         }
         
         public void Dispose()

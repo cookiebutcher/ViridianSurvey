@@ -17,6 +17,6 @@ namespace ViridianCode.ViridianSurvey.DataModel
         public int Scale { get; set; }
         public string Relevance { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public UserAccount CreatedBy { get; set; }
     }
 }

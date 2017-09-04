@@ -26,7 +26,7 @@ namespace DataModel.Migrations
 
                     b.Property<string>("Code");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<int?>("CreatedById");
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -48,6 +48,8 @@ namespace DataModel.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedById");
+
                     b.HasIndex("ParentQuestionId");
 
                     b.HasIndex("SurveyId");
@@ -60,7 +62,7 @@ namespace DataModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<int?>("CreatedById");
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -72,6 +74,8 @@ namespace DataModel.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedById");
+
                     b.ToTable("Respondents");
                 });
 
@@ -80,23 +84,73 @@ namespace DataModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Code");
+                    b.Property<bool>("AllowBackwardNavigation");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("Code")
+                        .IsRequired();
+
+                    b.Property<int>("CreatedById");
 
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("EndMessage");
+
+                    b.Property<bool>("ShowGroupDescription");
+
+                    b.Property<bool>("ShowGroupName");
+
+                    b.Property<bool>("ShowProgressBar");
+
+                    b.Property<bool>("ShowWelcomeScreen");
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.Property<string>("WelcomeMessage");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
 
                     b.ToTable("Surveys");
                 });
 
+            modelBuilder.Entity("ViridianCode.ViridianSurvey.DataModel.UserAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CreatedById");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Password");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.ToTable("UserAccount");
+                });
+
             modelBuilder.Entity("ViridianCode.ViridianSurvey.DataModel.Question", b =>
                 {
+                    b.HasOne("ViridianCode.ViridianSurvey.DataModel.UserAccount", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
                     b.HasOne("ViridianCode.ViridianSurvey.DataModel.Question", "ParentQuestion")
                         .WithMany()
                         .HasForeignKey("ParentQuestionId");
@@ -105,6 +159,28 @@ namespace DataModel.Migrations
                         .WithMany("Questions")
                         .HasForeignKey("SurveyId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ViridianCode.ViridianSurvey.DataModel.Respondent", b =>
+                {
+                    b.HasOne("ViridianCode.ViridianSurvey.DataModel.UserAccount", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+                });
+
+            modelBuilder.Entity("ViridianCode.ViridianSurvey.DataModel.Survey", b =>
+                {
+                    b.HasOne("ViridianCode.ViridianSurvey.DataModel.UserAccount", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ViridianCode.ViridianSurvey.DataModel.UserAccount", b =>
+                {
+                    b.HasOne("ViridianCode.ViridianSurvey.DataModel.UserAccount", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
                 });
 #pragma warning restore 612, 618
         }

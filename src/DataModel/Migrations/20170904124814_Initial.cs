@@ -9,12 +9,38 @@ namespace DataModel.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "UserAccount",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreatedById = table.Column<int>(type: "INTEGER", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LastName = table.Column<string>(type: "TEXT", nullable: true),
+                    Password = table.Column<string>(type: "TEXT", nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserAccount", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserAccount_UserAccount_CreatedById",
+                        column: x => x.CreatedById,
+                        principalTable: "UserAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Respondents",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CreatedBy = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedById = table.Column<int>(type: "INTEGER", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
                     FirstName = table.Column<string>(type: "TEXT", nullable: true),
@@ -23,6 +49,12 @@ namespace DataModel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Respondents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Respondents_UserAccount_CreatedById",
+                        column: x => x.CreatedById,
+                        principalTable: "UserAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -31,15 +63,28 @@ namespace DataModel.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Code = table.Column<string>(type: "TEXT", nullable: true),
-                    CreatedBy = table.Column<string>(type: "TEXT", nullable: true),
+                    AllowBackwardNavigation = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Code = table.Column<string>(type: "TEXT", nullable: false),
+                    CreatedById = table.Column<int>(type: "INTEGER", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    Title = table.Column<string>(type: "TEXT", nullable: true)
+                    EndMessage = table.Column<string>(type: "TEXT", nullable: true),
+                    ShowGroupDescription = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ShowGroupName = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ShowProgressBar = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ShowWelcomeScreen = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Title = table.Column<string>(type: "TEXT", nullable: false),
+                    WelcomeMessage = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Surveys", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Surveys_UserAccount_CreatedById",
+                        column: x => x.CreatedById,
+                        principalTable: "UserAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,7 +94,7 @@ namespace DataModel.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Code = table.Column<string>(type: "TEXT", nullable: true),
-                    CreatedBy = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedById = table.Column<int>(type: "INTEGER", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Mandatory = table.Column<bool>(type: "INTEGER", nullable: false),
                     Order = table.Column<int>(type: "INTEGER", nullable: false),
@@ -63,6 +108,12 @@ namespace DataModel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Questions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Questions_UserAccount_CreatedById",
+                        column: x => x.CreatedById,
+                        principalTable: "UserAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Questions_Questions_ParentQuestionId",
                         column: x => x.ParentQuestionId,
@@ -78,6 +129,11 @@ namespace DataModel.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Questions_CreatedById",
+                table: "Questions",
+                column: "CreatedById");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Questions_ParentQuestionId",
                 table: "Questions",
                 column: "ParentQuestionId");
@@ -86,6 +142,21 @@ namespace DataModel.Migrations
                 name: "IX_Questions_SurveyId",
                 table: "Questions",
                 column: "SurveyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Respondents_CreatedById",
+                table: "Respondents",
+                column: "CreatedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Surveys_CreatedById",
+                table: "Surveys",
+                column: "CreatedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserAccount_CreatedById",
+                table: "UserAccount",
+                column: "CreatedById");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -98,6 +169,9 @@ namespace DataModel.Migrations
 
             migrationBuilder.DropTable(
                 name: "Surveys");
+
+            migrationBuilder.DropTable(
+                name: "UserAccount");
         }
     }
 }

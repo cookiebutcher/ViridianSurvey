@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ViridianCode.ViridianSurvey.DataModel;
 using ViridianCode.ViridianSurvey.DataRepository.Implementations;
@@ -11,12 +12,12 @@ namespace ViridianSurveyWebApp.Controllers
     {
         public SurveyController(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-        }
+        }        
 
         [HttpGet("[action]")]
-        public IEnumerable<Survey> Surveys()
+        public async Task<IEnumerable<Survey>> Surveys()
         {
-            return unitOfWork.Surveys.GetAll();
+            return await unitOfWork.Surveys.GetAllAsync();
         }
     }
 }
