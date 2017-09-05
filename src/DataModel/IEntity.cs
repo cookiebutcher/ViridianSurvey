@@ -4,7 +4,7 @@ namespace ViridianCode.ViridianSurvey.DataModel
 {
     public interface IEntity
     {
-        int Id { get; set; } //test
+        int Id { get; set; }
         DateTime CreatedDate { get; set; }
         UserAccount CreatedBy { get; set; }
     }
