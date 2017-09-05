@@ -7,7 +7,7 @@ namespace ViridianCode.ViridianSurvey.DataRepository.Implementations
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ViridianSurveyContext context; //test
+        private readonly ViridianSurveyContext context;
 
         private ISurveyRepository surveyRepository;
         private IQuestionRepository questionRepository;
