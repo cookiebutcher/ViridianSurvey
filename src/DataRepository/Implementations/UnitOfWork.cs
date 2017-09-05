@@ -8,16 +8,40 @@ namespace ViridianCode.ViridianSurvey.DataRepository.Implementations
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ViridianSurveyContext context;
+
+        private ISurveyRepository surveyRepository;
+        private IQuestionRepository questionRepository;
         
         public UnitOfWork(ViridianSurveyContext viridianSurveyContext)
         {
             context = viridianSurveyContext;
-            Surveys = new SurveyRepository(context);
-            Questions = new QuestionRepository(context);
         }
         
-        public IQuestionRepository Questions { get; private set; }
-        public ISurveyRepository Surveys { get; private set; }
+        public IQuestionRepository Questions
+        {
+            get
+            {
+                if(questionRepository == null)
+                {
+                    questionRepository = new QuestionRepository(context);
+                }
+
+                return questionRepository;
+            }             
+        }
+
+        public ISurveyRepository Surveys 
+        {
+            get
+            {
+                if(surveyRepository == null)
+                {
+                    surveyRepository = new SurveyRepository(context);
+                }
+
+                return surveyRepository;
+            }             
+        }
 
         public int Complete()
         {

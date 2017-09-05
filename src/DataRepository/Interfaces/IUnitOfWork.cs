@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace ViridianCode.ViridianSurvey.DataRepository.Interfaces
 {
@@ -7,5 +8,6 @@ namespace ViridianCode.ViridianSurvey.DataRepository.Interfaces
         IQuestionRepository Questions { get; }
         ISurveyRepository Surveys { get; }
         int Complete();
+        Task<int> CompleteAsync();
     }
 }
