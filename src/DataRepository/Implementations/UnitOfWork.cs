@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using ViridianCode.ViridianSurvey.DataModel;
 using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
@@ -11,7 +10,8 @@ namespace ViridianCode.ViridianSurvey.DataRepository.Implementations
 
         private ISurveyRepository surveyRepository;
         private IQuestionRepository questionRepository;
-        
+        private IUserAccountRepository userAccountnRepository;
+
         public UnitOfWork(ViridianSurveyContext viridianSurveyContext)
         {
             context = viridianSurveyContext;
@@ -41,6 +41,19 @@ namespace ViridianCode.ViridianSurvey.DataRepository.Implementations
 
                 return surveyRepository;
             }             
+        }
+
+        public IUserAccountRepository UserAccounts
+        {
+            get
+            {
+                if (userAccountnRepository == null)
+                {
+                    userAccountnRepository = new UserAccountRepository(context);
+                }
+
+                return userAccountnRepository;
+            }
         }
 
         public int Complete()

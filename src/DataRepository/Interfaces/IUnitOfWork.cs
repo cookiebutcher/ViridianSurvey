@@ -7,6 +7,7 @@ namespace ViridianCode.ViridianSurvey.DataRepository.Interfaces
     {
         IQuestionRepository Questions { get; }
         ISurveyRepository Surveys { get; }
+        IUserAccountRepository UserAccounts { get; }
         int Complete();
         Task<int> CompleteAsync();
     }

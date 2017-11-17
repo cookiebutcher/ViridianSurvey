@@ -11,7 +11,7 @@ export class SurveyService {
 
     getSurveys() : Observable<ISurvey[]>{
 
-        return this.http.get('api/Survey/Surveys')
+        return this.http.get('api/v1/surveys')
         .map(res => <ISurvey[]>res.json())
         .catch(err => {
             return Observable.throw(err);

@@ -1,23 +1,43 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ViridianCode.ViridianSurvey.DataModel;
-using ViridianCode.ViridianSurvey.DataRepository.Implementations;
-using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
+using ViridianSurveyServices.Interfaces;
+using ViridianSurveyServices.Interfaces.WebModels;
+using System.Threading.Tasks;
 
 namespace ViridianSurveyWebApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/surveys")]
     public class SurveyController : BaseController
     {
-        public SurveyController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly ISurveyService surveyService;
+        public SurveyController(ISurveyService surveyService)
         {
+            this.surveyService = surveyService;
         }        
 
-        [HttpGet("[action]")]
-        public async Task<IEnumerable<Survey>> Surveys()
+        [HttpGet]
+        public async Task<IActionResult> GetAllSurveys()
         {
-            return await unitOfWork.Surveys.GetAllAsync();
+            return Ok(await surveyService.GetAllSurveysAsync());
+        }
+
+        [HttpGet]
+        [Route("{surveyId}")]
+        public async Task<IActionResult> GetSurveyById(int surveyId)
+        {
+            return Ok(await surveyService.GetSurveyByIdAsync(surveyId));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] WebSurvey survey)
+        {
+            if(survey == null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var newSurvey = await surveyService.CreateSurvey(survey);
+
+            return Ok(newSurvey);
         }
     }
 }

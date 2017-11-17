@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ViridianCode.ViridianSurvey.DataModel;
 using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
 using ViridianCode.ViridianSurvey.DataRepository.Implementations;
+using ViridianSurveyServices.Interfaces;
+using ViridianSurveyServices.Implementations;
 
 namespace ViridianSurveyWebApp
 {
@@ -28,6 +30,7 @@ namespace ViridianSurveyWebApp
         {
             services.AddDbContext<ViridianSurveyContext>(options => options.UseSqlite("Filename=./viridianSurvey.db"));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ISurveyService, SurveyService>();
             services.AddMvc();
         }
 
