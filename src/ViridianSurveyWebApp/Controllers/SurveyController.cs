@@ -28,11 +28,11 @@ namespace ViridianSurveyWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] WebSurvey survey)
+        public async Task<IActionResult> CreateSurvey([FromBody] WebSurvey survey)
         {
-            if(survey == null || !ModelState.IsValid)
+            if (survey == null || !ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             var newSurvey = await surveyService.CreateSurvey(survey);
