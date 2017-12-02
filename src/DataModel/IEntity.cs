@@ -6,6 +6,5 @@ namespace ViridianCode.ViridianSurvey.DataModel
     {
         int Id { get; set; }
         DateTime CreatedDate { get; set; }
-        UserAccount CreatedBy { get; set; }
     }
 }

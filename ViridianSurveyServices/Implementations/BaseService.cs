@@ -1,14 +1,17 @@
-﻿using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
+﻿using AutoMapper;
+using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
 
-namespace ViridianSurveyServices.Implementations
+namespace ViridianCode.ViridianSurvey.Services.Implementations
 {
     public class BaseService
     {
         protected readonly IUnitOfWork unitOfWork;
+        protected readonly IMapper mapper;
 
-        protected BaseService(IUnitOfWork unitOfWork)
+        protected BaseService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
     }
 }

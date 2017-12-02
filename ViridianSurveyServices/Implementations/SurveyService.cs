@@ -5,18 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using ViridianCode.ViridianSurvey.DataModel;
 using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
-using ViridianSurveyServices.Interfaces;
-using ViridianSurveyServices.Interfaces.WebModels;
+using ViridianCode.ViridianSurvey.Services.Interfaces;
+using ViridianCode.ViridianSurvey.Services.Interfaces.WebModels;
 
-namespace ViridianSurveyServices.Implementations
+namespace ViridianCode.ViridianSurvey.Services.Implementations
 {
     public class SurveyService : BaseService, ISurveyService
     {
-        private readonly IMapper mapper;
-        public SurveyService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        //private readonly IMapper mapper;
+        public SurveyService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<WebSurvey, Survey>());
-            this.mapper = config.CreateMapper();
         }
 
         public async Task<WebSurvey> CreateSurvey(WebSurvey survey)

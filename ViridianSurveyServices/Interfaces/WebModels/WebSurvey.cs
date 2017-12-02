@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ViridianSurveyServices.Interfaces.WebModels
+namespace ViridianCode.ViridianSurvey.Services.Interfaces.WebModels
 {
     public class WebSurvey
     {

@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
-using ViridianSurveyServices.Interfaces;
-using ViridianSurveyServices.Interfaces.WebModels;
+using ViridianCode.ViridianSurvey.Services.Interfaces;
+using ViridianCode.ViridianSurvey.Services.Interfaces.WebModels;
 using System.Threading.Tasks;
 
 namespace ViridianSurveyWebApp.Controllers
 {
     [Route("api/v1/surveys")]
-    public class SurveyController : BaseController
+    public class SurveysController : BaseController
     {
         private readonly ISurveyService surveyService;
-        public SurveyController(ISurveyService surveyService)
+        public SurveysController(ISurveyService surveyService)
         {
             this.surveyService = surveyService;
         }        

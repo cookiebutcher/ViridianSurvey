@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ViridianSurveyServices.Interfaces.WebModels;
+using ViridianCode.ViridianSurvey.Services.Interfaces.WebModels;
 
-namespace ViridianSurveyServices.Interfaces
+namespace ViridianCode.ViridianSurvey.Services.Interfaces
 {
     public interface ISurveyService
     {

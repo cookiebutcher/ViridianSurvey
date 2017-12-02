@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ViridianSurveyServices.Interfaces.WebModels
+namespace ViridianCode.ViridianSurvey.Services.Interfaces.WebModels
 {
     public class WebUserAccount
     {
