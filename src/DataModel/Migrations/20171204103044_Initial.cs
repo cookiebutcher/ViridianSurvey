@@ -14,24 +14,18 @@ namespace DataModel.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CreatedById = table.Column<int>(type: "INTEGER", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
                     FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: true),
-                    Password = table.Column<string>(type: "TEXT", nullable: true),
+                    PasswordHash = table.Column<byte[]>(type: "BLOB", nullable: true),
+                    PasswordSalt = table.Column<byte[]>(type: "BLOB", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserAccount", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserAccount_UserAccount_CreatedById",
-                        column: x => x.CreatedById,
-                        principalTable: "UserAccount",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,8 +87,8 @@ namespace DataModel.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Code = table.Column<string>(type: "TEXT", nullable: true),
-                    CreatedById = table.Column<int>(type: "INTEGER", nullable: true),
+                    Code = table.Column<string>(type: "TEXT", nullable: false),
+                    CreatedById = table.Column<int>(type: "INTEGER", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Mandatory = table.Column<bool>(type: "INTEGER", nullable: false),
                     Order = table.Column<int>(type: "INTEGER", nullable: false),
@@ -103,7 +97,7 @@ namespace DataModel.Migrations
                     Relevance = table.Column<string>(type: "TEXT", nullable: true),
                     Scale = table.Column<int>(type: "INTEGER", nullable: false),
                     SurveyId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Type = table.Column<string>(type: "TEXT", nullable: true)
+                    Type = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -113,7 +107,7 @@ namespace DataModel.Migrations
                         column: x => x.CreatedById,
                         principalTable: "UserAccount",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Questions_Questions_ParentQuestionId",
                         column: x => x.ParentQuestionId,
@@ -151,11 +145,6 @@ namespace DataModel.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Surveys_CreatedById",
                 table: "Surveys",
-                column: "CreatedById");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserAccount_CreatedById",
-                table: "UserAccount",
                 column: "CreatedById");
         }
 

@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using ViridianCode.ViridianSurvey.Services.Interfaces;
 using ViridianCode.ViridianSurvey.Services.Interfaces.WebModels;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ViridianSurveyWebApp.Controllers
 {
+    [Authorize]
     [Route("api/v1/surveys")]
     public class SurveysController : BaseController
     {

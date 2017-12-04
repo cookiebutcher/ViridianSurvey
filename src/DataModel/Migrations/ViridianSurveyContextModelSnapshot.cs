@@ -17,16 +17,17 @@ namespace DataModel.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.0-preview2-25794");
+                .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
             modelBuilder.Entity("ViridianCode.ViridianSurvey.DataModel.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Code");
+                    b.Property<string>("Code")
+                        .IsRequired();
 
-                    b.Property<int?>("CreatedById");
+                    b.Property<int>("CreatedById");
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -44,7 +45,8 @@ namespace DataModel.Migrations
 
                     b.Property<int>("SurveyId");
 
-                    b.Property<string>("Type");
+                    b.Property<string>("Type")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -122,8 +124,6 @@ namespace DataModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CreatedById");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Email");
@@ -134,13 +134,13 @@ namespace DataModel.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<string>("Password");
+                    b.Property<byte[]>("PasswordHash");
+
+                    b.Property<byte[]>("PasswordSalt");
 
                     b.Property<string>("UserName");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatedById");
 
                     b.ToTable("UserAccount");
                 });
@@ -149,7 +149,8 @@ namespace DataModel.Migrations
                 {
                     b.HasOne("ViridianCode.ViridianSurvey.DataModel.UserAccount", "CreatedBy")
                         .WithMany()
-                        .HasForeignKey("CreatedById");
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ViridianCode.ViridianSurvey.DataModel.Question", "ParentQuestion")
                         .WithMany()
@@ -174,13 +175,6 @@ namespace DataModel.Migrations
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ViridianCode.ViridianSurvey.DataModel.UserAccount", b =>
-                {
-                    b.HasOne("ViridianCode.ViridianSurvey.DataModel.UserAccount", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById");
                 });
 #pragma warning restore 612, 618
         }
