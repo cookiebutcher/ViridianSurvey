@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using ViridianCode.ViridianSurvey.DataModel;
 using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
 using ViridianCode.ViridianSurvey.Services.Interfaces;
 using ViridianCode.ViridianSurvey.Services.Interfaces.WebModels;
@@ -38,6 +39,40 @@ namespace ViridianCode.ViridianSurvey.Services.Implementations
         public Task<IEnumerable<WebUserAccount>> GetAllUserAccountsAsync()
         {
             throw new NotImplementedException();
+        }
+
+        public WebUserAccount Create(WebUserAccount user)
+        {
+            // validation
+            if (string.IsNullOrWhiteSpace(user.Password))
+                throw new Exception("Password is required");
+
+            var userFromDb = unitOfWork.UserAccounts.SearchFor(x => x.UserName == user.UserName);
+            if (userFromDb != null)
+                throw new Exception("Username " + user.UserName + " is already taken");
+
+            CreatePasswordHash(user.Password, out var passwordHash, out var passwordSalt);
+
+            UserAccount newUser = mapper.Map<UserAccount>(user);
+            newUser.PasswordHash = passwordHash;
+            newUser.PasswordSalt = passwordSalt;
+
+            unitOfWork.UserAccounts.Add(newUser);
+            unitOfWork.Complete();
+
+            return mapper.Map<WebUserAccount>(newUser);
+        }
+
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            if (password == null) throw new ArgumentNullException("password");
+            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
         }
 
         private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)

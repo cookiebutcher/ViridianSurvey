@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataRepository", "src\DataR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViridianSurveyWebApp", "src\ViridianSurveyWebApp\ViridianSurveyWebApp.csproj", "{EBEC518C-38A8-4A5B-98E7-A6ADEFC85444}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViridianSurveyServices", "ViridianSurveyServices\ViridianSurveyServices.csproj", "{552D1544-66CC-45CA-9EFF-DEB744EC24F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViridianSurveyServices", "src\ViridianSurveyServices\ViridianSurveyServices.csproj", "{552D1544-66CC-45CA-9EFF-DEB744EC24F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -12,6 +12,7 @@ using ViridianCode.ViridianSurvey.Services.Interfaces.WebModels;
 
 namespace ViridianSurveyWebApp.Controllers
 {
+    [Route("api/v1/users")]
     public class UserAccountsController : BaseController
     {
         private readonly IUserAccountService userAccountService;
@@ -59,9 +60,22 @@ namespace ViridianSurveyWebApp.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+        [Route("register")]
         public IActionResult Register([FromBody]WebUserAccount webUserAccount)
         {
-            return BadRequest();
+            //var user = _mapper.Map<UserAccount>(webUserAccount);
+
+            try
+            {
+                // save 
+                userAccountService.Create(webUserAccount);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]

@@ -7,6 +7,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>ViridianCode.ViridianSurvey.DataRepository</AssemblyName>
+    <RootNamespace>ViridianCode.ViridianSurvey.DataRepository</RootNamespace>
   </PropertyGroup>
 
 </Project>

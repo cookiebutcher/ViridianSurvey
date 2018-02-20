@@ -10,9 +10,6 @@ namespace ViridianCode.ViridianSurvey.DataRepository.Implementations
 
         }
 
-        public ViridianSurveyContext ViridianSurveyContext
-        {
-            get { return Context as ViridianSurveyContext; }
-        }
+        public ViridianSurveyContext ViridianSurveyContext => Context as ViridianSurveyContext;
     }
 }

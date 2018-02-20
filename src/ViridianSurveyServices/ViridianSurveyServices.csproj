@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>ViridianSurveyServices</AssemblyName>
-    <RootNamespace>ViridianSurveyServices</RootNamespace>
+    <AssemblyName>ViridianCode.ViridianSurvey.Services</AssemblyName>
+    <RootNamespace>ViridianCode.ViridianSurvey.Services</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\DataRepository\DataRepository.csproj" />
+    <ProjectReference Include="..\DataRepository\DataRepository.csproj" />
   </ItemGroup>
 
 </Project>

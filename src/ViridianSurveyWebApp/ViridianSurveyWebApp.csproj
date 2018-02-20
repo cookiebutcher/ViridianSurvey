@@ -27,17 +27,35 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\app.config.ts" />
+    <None Remove="ClientApp\app\components\alert\alert.component.ts" />
+    <None Remove="ClientApp\app\components\login\login.component.ts" />
+    <None Remove="ClientApp\app\components\register\register.component.ts" />
     <None Remove="ClientApp\app\components\surveys\createSurvey.component.ts" />
+    <None Remove="ClientApp\app\datamodels\userAccount.model.ts" />
+    <None Remove="ClientApp\app\dataservices\alert.service.ts" />
+    <None Remove="ClientApp\app\dataservices\authentication.service.ts" />
+    <None Remove="ClientApp\app\dataservices\user.service.ts" />
+    <None Remove="ClientApp\app\guards\auth.guard.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ViridianSurveyServices\ViridianSurveyServices.csproj" />
+    <ProjectReference Include="..\ViridianSurveyServices\ViridianSurveyServices.csproj" />
     <ProjectReference Include="..\DataModel\DataModel.csproj" />
     <ProjectReference Include="..\DataRepository\DataRepository.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app.config.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\alert\alert.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\register\register.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\surveys\createSurvey.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\datamodels\userAccount.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dataservices\alert.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dataservices\authentication.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dataservices\user.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\guards\auth.guard.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

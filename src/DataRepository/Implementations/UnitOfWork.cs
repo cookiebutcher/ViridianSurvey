@@ -17,44 +17,11 @@ namespace ViridianCode.ViridianSurvey.DataRepository.Implementations
             context = viridianSurveyContext;
         }
         
-        public IQuestionRepository Questions
-        {
-            get
-            {
-                if(questionRepository == null)
-                {
-                    questionRepository = new QuestionRepository(context);
-                }
+        public IQuestionRepository Questions => questionRepository ?? (questionRepository = new QuestionRepository(context));
 
-                return questionRepository;
-            }             
-        }
+        public ISurveyRepository Surveys => surveyRepository ?? (surveyRepository = new SurveyRepository(context));
 
-        public ISurveyRepository Surveys 
-        {
-            get
-            {
-                if(surveyRepository == null)
-                {
-                    surveyRepository = new SurveyRepository(context);
-                }
-
-                return surveyRepository;
-            }             
-        }
-
-        public IUserAccountRepository UserAccounts
-        {
-            get
-            {
-                if (userAccountnRepository == null)
-                {
-                    userAccountnRepository = new UserAccountRepository(context);
-                }
-
-                return userAccountnRepository;
-            }
-        }
+        public IUserAccountRepository UserAccounts => userAccountnRepository ?? (userAccountnRepository = new UserAccountRepository(context));
 
         public int Complete()
         {
