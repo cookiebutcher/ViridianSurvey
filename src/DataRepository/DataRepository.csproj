@@ -1,12 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0-preview2-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
   </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>ViridianCode.ViridianSurvey.DataRepository</AssemblyName>
+    <RootNamespace>ViridianCode.ViridianSurvey.DataRepository</RootNamespace>
   </PropertyGroup>
 
 </Project>

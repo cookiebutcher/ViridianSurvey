@@ -1,4 +1,4 @@
-using System;
+using System.Threading.Tasks;
 using ViridianCode.ViridianSurvey.DataModel;
 using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
 
@@ -7,20 +7,30 @@ namespace ViridianCode.ViridianSurvey.DataRepository.Implementations
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ViridianSurveyContext context;
-        
+
+        private ISurveyRepository surveyRepository;
+        private IQuestionRepository questionRepository;
+        private IUserAccountRepository userAccountnRepository;
+
         public UnitOfWork(ViridianSurveyContext viridianSurveyContext)
         {
             context = viridianSurveyContext;
-            Surveys = new SurveyRepository(context);
-            Questions = new QuestionRepository(context);
         }
         
-        public IQuestionRepository Questions { get; private set; }
-        public ISurveyRepository Surveys { get; private set; }
+        public IQuestionRepository Questions => questionRepository ?? (questionRepository = new QuestionRepository(context));
+
+        public ISurveyRepository Surveys => surveyRepository ?? (surveyRepository = new SurveyRepository(context));
+
+        public IUserAccountRepository UserAccounts => userAccountnRepository ?? (userAccountnRepository = new UserAccountRepository(context));
 
         public int Complete()
         {
             return context.SaveChanges();
+        }
+        
+        public async Task<int> CompleteAsync()
+        {
+            return await context.SaveChangesAsync();
         }
         
         public void Dispose()
