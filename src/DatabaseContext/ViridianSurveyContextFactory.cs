@@ -9,7 +9,7 @@ namespace ViridianCode.ViridianSurvey.DatabaseContext
         {
             var optionsBuilder = new DbContextOptionsBuilder<ViridianSurveyContext>();
             //string connectionString = ConfigurationExtensions.GetConnectionString(this.Configuration, "ViridianSurveysConnection");
-            optionsBuilder.UseSqlServer("Server=localhost;Database=Viridian2;User Id=sa;Password=Blueye21;");
+            //optionsBuilder.UseSqlServer("");
 
             return new ViridianSurveyContext(optionsBuilder.Options);
         }
