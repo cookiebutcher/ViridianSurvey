@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataServices\DataServices.csproj" />
-    <ProjectReference Include="..\DataModel\DataModel.csproj" />
+    <ProjectReference Include="..\DatabaseContext\DatabaseContext.csproj" />
     <ProjectReference Include="..\DataRepository\DataRepository.csproj" />
   </ItemGroup>
 

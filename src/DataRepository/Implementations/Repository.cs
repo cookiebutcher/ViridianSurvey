@@ -9,7 +9,7 @@ using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
 
 namespace ViridianCode.ViridianSurvey.DataRepository.Implementations
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly DbContext Context;
         

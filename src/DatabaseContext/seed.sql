@@ -1,3 +1,23 @@
+INSERT INTO "UserAccounts" (
+        "UserName",
+        --"PasswordHash",
+        --"PasswordSalt",
+        "FirstName",
+        "LastName",
+        "Email",
+        "CreatedDate",
+        "IsActive")
+VALUES (
+    'test',
+    --'hasz',
+    --'salt',
+    'Janusz',
+    'Testowy',
+    'test@test.com',
+    '2018-04-01',
+    1
+)
+
 INSERT INTO "Surveys" (
 	"AllowBackwardNavigation", 
 	"Code", 

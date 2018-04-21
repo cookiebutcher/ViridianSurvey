@@ -3,18 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ViridianCode.ViridianSurvey.DataModel
 {
-    public class Question : IEntity
+    public class Question
     {
-        public int Id { get; set; }
+        public int Id { get; set; }      
 
-        [Required]
-        public int SurveyId { get; set; }
+        public Survey Survey { get; set; }
 
-        public virtual Survey Survey { get; set; }
-
-        public int? ParentQuestionId { get; set; }
-
-        public virtual Question ParentQuestion { get; set; }
+        public Question ParentQuestion { get; set; }
 
         [Required]
         public string Code { get; set; }

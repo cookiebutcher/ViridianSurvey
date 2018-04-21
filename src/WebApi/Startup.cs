@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using ViridianCode.ViridianSurvey.DataModel;
+using ViridianCode.ViridianSurvey.DatabaseContext;
 using ViridianCode.ViridianSurvey.DataRepository.Interfaces;
 using ViridianCode.ViridianSurvey.DataRepository.Implementations;
 using ViridianCode.ViridianSurvey.DataServices.Interfaces;

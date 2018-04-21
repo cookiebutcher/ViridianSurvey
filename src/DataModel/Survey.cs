@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ViridianCode.ViridianSurvey.DataModel
 {
-    public class Survey : IEntity
+    public class Survey
     {
         #region General properties
         public int Id { get; set; }
@@ -21,7 +21,7 @@ namespace ViridianCode.ViridianSurvey.DataModel
         
         public string EndMessage { get; set; }
         
-        public virtual List<Question> Questions { get; set; }
+        public List<Question> Questions { get; set; }
         
         [Required]
         public DateTime CreatedDate { get; set; }

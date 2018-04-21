@@ -2,7 +2,7 @@ using System;
 
 namespace ViridianCode.ViridianSurvey.DataModel
 {
-    public class Respondent : IEntity
+    public class Respondent
     {
         public int Id { get; set; }
 
