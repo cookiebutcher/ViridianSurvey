@@ -20,18 +20,23 @@ namespace ViridianCode.ViridianSurvey.WebApi
 {
     public class Startup
     {
+        const string ConnectionSecretName = "ViridianConnectionStringSecret";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; set;}
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string cs = ConfigurationExtensions.GetConnectionString(this.Configuration, "ViridianSurveysConnection");
-            services.AddDbContext<ViridianSurveyContext>(options => options.UseSqlServer(cs));
+            var builder = new ConfigurationBuilder();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
+            
+            var connectionString = Configuration[ConnectionSecretName];
+            services.AddDbContext<ViridianSurveyContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ISurveyService, SurveyService>();
             services.AddScoped<IUserAccountService, UserAccountService>();
@@ -41,12 +46,12 @@ namespace ViridianCode.ViridianSurvey.WebApi
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
+        {            
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();                
             }
-
+                        
             app.UseMvc();
         }
     }
