@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ViridianCode.ViridianSurvey.DatabaseContext.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,14 +15,14 @@ namespace ViridianCode.ViridianSurvey.DatabaseContext.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    LastName = table.Column<string>(nullable: true),
+                    UserName = table.Column<string>(nullable: true),
                     PasswordHash = table.Column<byte[]>(nullable: true),
                     PasswordSalt = table.Column<byte[]>(nullable: true),
-                    UserName = table.Column<string>(nullable: true)
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,11 +35,11 @@ namespace ViridianCode.ViridianSurvey.DatabaseContext.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedById = table.Column<int>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
+                    LastName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedById = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,18 +58,18 @@ namespace ViridianCode.ViridianSurvey.DatabaseContext.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AllowBackwardNavigation = table.Column<bool>(nullable: false),
                     Code = table.Column<string>(nullable: false),
-                    CreatedById = table.Column<int>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    EndMessage = table.Column<string>(nullable: true),
-                    ShowGroupDescription = table.Column<bool>(nullable: false),
-                    ShowGroupName = table.Column<bool>(nullable: false),
-                    ShowProgressBar = table.Column<bool>(nullable: false),
-                    ShowWelcomeScreen = table.Column<bool>(nullable: false),
                     Title = table.Column<string>(nullable: false),
-                    WelcomeMessage = table.Column<string>(nullable: true)
+                    Description = table.Column<string>(nullable: true),
+                    WelcomeMessage = table.Column<string>(nullable: true),
+                    EndMessage = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedById = table.Column<int>(nullable: false),
+                    ShowWelcomeScreen = table.Column<bool>(nullable: false),
+                    AllowBackwardNavigation = table.Column<bool>(nullable: false),
+                    ShowProgressBar = table.Column<bool>(nullable: false),
+                    ShowGroupName = table.Column<bool>(nullable: false),
+                    ShowGroupDescription = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,17 +88,17 @@ namespace ViridianCode.ViridianSurvey.DatabaseContext.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Code = table.Column<string>(nullable: false),
-                    CreatedById = table.Column<int>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    Mandatory = table.Column<bool>(nullable: false),
-                    Order = table.Column<int>(nullable: false),
-                    ParentQuestionId = table.Column<int>(nullable: true),
-                    QuestionText = table.Column<string>(nullable: true),
-                    Relevance = table.Column<string>(nullable: true),
-                    Scale = table.Column<int>(nullable: false),
                     SurveyId = table.Column<int>(nullable: true),
-                    Type = table.Column<string>(nullable: false)
+                    ParentQuestionId = table.Column<int>(nullable: true),
+                    Code = table.Column<string>(nullable: false),
+                    QuestionText = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
+                    Mandatory = table.Column<bool>(nullable: false),
+                    Scale = table.Column<int>(nullable: false),
+                    Relevance = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedById = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
