@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>06c90b51-1adb-4ed9-8b7c-57e9d00da8e2</UserSecretsId>
+    <AssemblyName>ViridianCode.ViridianSurvey.WebApi</AssemblyName>
+    <RootNamespace>ViridianCode.ViridianSurvey.WebApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

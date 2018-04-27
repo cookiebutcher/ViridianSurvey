@@ -8,24 +8,24 @@ namespace ViridianCode.ViridianSurvey.WebApi.Controllers
     [Route("v1/surveys")]
     public class SurveysController : BaseController
     {
-        private readonly ISurveyService surveyService;
+        private readonly ISurveyService _surveyService;
 
         public SurveysController(ISurveyService surveyService)
         {
-            this.surveyService = surveyService;
+            _surveyService = surveyService;
         }        
 
         [HttpGet]
         public async Task<IActionResult> GetAllSurveys()
         {
-            return Ok(await surveyService.GetAllSurveysAsync());
+            return Ok(await _surveyService.GetAllSurveysAsync());
         }
 
         [HttpGet]
         [Route("{surveyId}")]
         public async Task<IActionResult> GetSurveyById(int surveyId)
         {
-            return Ok(await surveyService.GetSurveyByIdAsync(surveyId));
+            return Ok(await _surveyService.GetSurveyByIdAsync(surveyId));
         }
 
         [HttpPost]
@@ -36,7 +36,7 @@ namespace ViridianCode.ViridianSurvey.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var newSurvey = await surveyService.CreateSurvey(survey);
+            var newSurvey = await _surveyService.CreateSurvey(survey);
 
             return Ok(newSurvey);
         }
