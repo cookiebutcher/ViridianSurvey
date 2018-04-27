@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>ViridianCode.ViridianSurvey.DatabaseContext</AssemblyName>
+    <RootNamespace>ViridianCode.ViridianSurvey.DatabaseContext</RootNamespace>
+    <UserSecretsId>06c90b51-1adb-4ed9-8b7c-57e9d00da8e2</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.0-preview2-final" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataModel\DataModel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.0-preview1-final" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.1" />
+  </ItemGroup>
+</Project>
