@@ -1,22 +1,18 @@
-using System;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using ViridianCode.ViridianSurvey.DatabaseContext;
 
-namespace ViridianCode.ViridianSurvey.Migrations
+namespace ViridianCode.ViridianSurvey.DatabaseContext
 {
     public class TemporaryDbContextFactory : IDesignTimeDbContextFactory<ViridianSurveyContext>
     {
-        private static IConfigurationRoot Configuration;
+        private static IConfigurationRoot _configuration;
         const string ConnectionSecretName = "ViridianConnectionStringSecret";        
 
         public ViridianSurveyContext CreateDbContext(string[] args)
         {
             BootstrapConfiguration();
-            var connectionString = Configuration[ConnectionSecretName];
+            var connectionString = _configuration[ConnectionSecretName];
                 
             var builder = new DbContextOptionsBuilder<ViridianSurveyContext>();                
     
@@ -30,7 +26,7 @@ namespace ViridianCode.ViridianSurvey.Migrations
             var builder = new ConfigurationBuilder();
             builder.AddUserSecrets<TemporaryDbContextFactory>();
 
-            Configuration = builder.Build();
+            _configuration = builder.Build();
         }
     }
 }

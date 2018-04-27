@@ -22,7 +22,7 @@ namespace ViridianCode.ViridianSurvey.DataServices.Implementations
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 return null;
 
-            var user = unitOfWork.UserAccounts.SearchFor(x => x.UserName == username).SingleOrDefault();
+            var user = UnitOfWork.UserAccounts.SearchFor(x => x.UserName == username).SingleOrDefault();
 
             // check if username exists
             if (user == null)
@@ -33,7 +33,7 @@ namespace ViridianCode.ViridianSurvey.DataServices.Implementations
                 return null;
 
             // authentication successful
-            return mapper.Map<WebUserAccount>(user);
+            return Mapper.Map<WebUserAccount>(user);
         }
 
         public Task<IEnumerable<WebUserAccount>> GetAllUserAccountsAsync()
@@ -47,20 +47,20 @@ namespace ViridianCode.ViridianSurvey.DataServices.Implementations
             if (string.IsNullOrWhiteSpace(user.Password))
                 throw new Exception("Password is required");
 
-            var userFromDb = unitOfWork.UserAccounts.SearchFor(x => x.UserName == user.UserName);
+            var userFromDb = UnitOfWork.UserAccounts.SearchFor(x => x.UserName == user.UserName);
             if (userFromDb != null)
                 throw new Exception("Username " + user.UserName + " is already taken");
 
             CreatePasswordHash(user.Password, out var passwordHash, out var passwordSalt);
 
-            UserAccount newUser = mapper.Map<UserAccount>(user);
+            UserAccount newUser = Mapper.Map<UserAccount>(user);
             newUser.PasswordHash = passwordHash;
             newUser.PasswordSalt = passwordSalt;
 
-            unitOfWork.UserAccounts.Add(newUser);
-            unitOfWork.Complete();
+            UnitOfWork.UserAccounts.Add(newUser);
+            UnitOfWork.Complete();
 
-            return mapper.Map<WebUserAccount>(newUser);
+            return Mapper.Map<WebUserAccount>(newUser);
         }
 
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

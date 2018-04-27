@@ -5,13 +5,13 @@ namespace ViridianCode.ViridianSurvey.DataServices.Implementations
 {
     public class BaseService
     {
-        protected readonly IUnitOfWork unitOfWork;
-        protected readonly IMapper mapper;
+        protected readonly IUnitOfWork UnitOfWork;
+        protected readonly IMapper Mapper;
 
         protected BaseService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            this.unitOfWork = unitOfWork;
-            this.mapper = mapper;
+            UnitOfWork = unitOfWork;
+            Mapper = mapper;
         }
     }
 }

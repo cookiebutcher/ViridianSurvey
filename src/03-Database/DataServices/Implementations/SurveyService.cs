@@ -19,30 +19,30 @@ namespace ViridianCode.ViridianSurvey.DataServices.Implementations
 
         public async Task<WebSurvey> CreateSurvey(WebSurvey survey)
         {
-            Survey newSurvey = mapper.Map<Survey>(survey);
+            Survey newSurvey = Mapper.Map<Survey>(survey);
             newSurvey.CreatedDate = DateTime.Now;
-            newSurvey.CreatedBy = unitOfWork.UserAccounts.GetAll().FirstOrDefault();
-            unitOfWork.Surveys.Add(newSurvey);
-            await unitOfWork.CompleteAsync();
+            newSurvey.CreatedBy = UnitOfWork.UserAccounts.GetAll().FirstOrDefault();
+            UnitOfWork.Surveys.Add(newSurvey);
+            await UnitOfWork.CompleteAsync();
 
-            return mapper.Map<WebSurvey>(newSurvey);
+            return Mapper.Map<WebSurvey>(newSurvey);
         }
 
         public async Task<IEnumerable<WebSurvey>> GetAllSurveysAsync()
         {
-            var surveys = await unitOfWork.Surveys.GetAllAsync();
-            return surveys.Select(x => mapper.Map<WebSurvey>(x));            
+            var surveys = await UnitOfWork.Surveys.GetAllAsync();
+            return surveys.Select(x => Mapper.Map<WebSurvey>(x));            
         }
 
         public async Task<WebSurvey> GetSurveyByIdAsync(int surveyId)
         {
-            var survey = await unitOfWork.Surveys.GetByIdAsync(surveyId);
+            var survey = await UnitOfWork.Surveys.GetByIdAsync(surveyId);
             if (survey == null)
             {
                 return null;
             }
 
-            return mapper.Map<WebSurvey>(survey);
+            return Mapper.Map<WebSurvey>(survey);
         }
     }
 }
