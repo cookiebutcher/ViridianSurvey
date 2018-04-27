@@ -10,9 +10,10 @@ using ViridianCode.ViridianSurvey.DatabaseContext;
 namespace ViridianCode.ViridianSurvey.DatabaseContext.Migrations
 {
     [DbContext(typeof(ViridianSurveyContext))]
-    partial class ViridianSurveyContextModelSnapshot : ModelSnapshot
+    [Migration("20180427201407_DataSeed")]
+    partial class DataSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
