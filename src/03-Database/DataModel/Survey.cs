@@ -26,6 +26,8 @@ namespace ViridianCode.ViridianSurvey.DataModel
         [Required]
         public DateTime CreatedDate { get; set; }
         
+        public int CreatedById { get; set; }
+
         [Required]
         public UserAccount CreatedBy { get; set; }
         #endregion
